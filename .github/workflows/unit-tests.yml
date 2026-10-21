@@ -19,6 +19,11 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Install ncurses 5 compatibility for embedded MariaDB
+        run: |
+          sudo ln -sf /usr/lib/x86_64-linux-gnu/libncurses.so.6 /usr/lib/x86_64-linux-gnu/libncurses.so.5
+          sudo ln -sf /usr/lib/x86_64-linux-gnu/libtinfo.so.6 /usr/lib/x86_64-linux-gnu/libtinfo.so.5
+
       - name: Build
         working-directory: ./java-springboot-final
         run: mvn --batch-mode -DskipTests package
